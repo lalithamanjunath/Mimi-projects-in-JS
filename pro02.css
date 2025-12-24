@@ -1,0 +1,40 @@
+.input-group {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+label {
+    font-size: 14px;
+}
+
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#calculateBtn {
+    background-color: #667eea;
+    color: white;
+}
+
+#resetBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}

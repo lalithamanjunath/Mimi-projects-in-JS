@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    
+    <style>
+        body{
+            background-color: white;
+            text-align: center;
+            font-family:Arial;
+        }
+        nav a{
+            display: inline-block;
+            margin: 8px;
+            padding: 8px 16px;
+            border: 1 px solid black;
+            text-decoration: none;
+            color: black;
+            border-radius: 6px;
+            background-color: #e5e5e5;
+        }
+        .button{
+            height: 50px;
+            width: 50px;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #000;
+            margin: 10px;
+        }
+
+        #grey{background-color: grey;}
+        #white{background-color: white;}
+        #blue{background-color: blue;}
+        #yellow{background-color: yellow;}
+        
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" aria-current="page">Home</a>
+        <br>
+        <br>
+        <a target="_blank" href="https://github.com/lalithamanjunath">GITHUB</a>
+    </nav>
+
+    <h1>Color Scheme Switcher</h1>
+    <span class = "button" id = "grey"></span>
+    <span class = "button" id = "white"></span>
+    <span class = "button" id = "blue"></span>
+    <span class = "button" id = "yellow"></span>
+    <h2> Try clicking on one of the colors above
+        <sapn>to change the BACKGROUND COLOR of this page....!</sapn>
+    </h2>  
+    
+    <script src="pro.js"></script>
+</body>
+</html>

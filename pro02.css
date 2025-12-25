@@ -1,40 +1,67 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: #fff;
+  padding: 35px;
+  border-radius: 32px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(26, 26, 27, 0.2);
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
 .input-group {
-    margin-bottom: 15px;
-    text-align: center;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 label {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-
 input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 #calculateBtn {
-    background-color: #667eea;
-    color: white;
+  background-color: #4359b7;
+  color: white;
 }
 
 #resetBtn {
-    background-color: #f44336;
-    color: white;
+  background-color: #e34539;
+  color: white;
 }
 
+
 #result {
-    margin-top: 20px;
-    font-weight: bold;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
 }

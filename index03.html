@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style> 
+        /* Layout and theme */
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --accent: #6ba3e8;
+        }
+
+        *{ box-sizing: border-box;}
+
+        body{
+            margin: 0;
+            min-height:100vh ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0c4864, #2b61b7);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--text);
+        }
+
+        .clock-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px;
+            width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .time {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .seconds {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-left: 10px;
+        }
+
+        .ampm {
+            display: inline-block;
+            font-size: 1.5rem;
+            margin-left: 15px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: rgba(96, 165, 250, 0.15);
+            color: var(--accent);
+            vertical-align: middle;
+        }
+
+        .date {
+            margin-top: 12px;
+            font-size: 1.2rem;
+            color: #cbd5e1;
+        }
+
+        .tz {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .controls {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #335078;
+            color: var(--text);
+            transition: background-color 0.2s ease, transform 0.05s ease;
+        }
+
+        button:hover { background: #374151;}
+        button:active { transform: translate(1px);}
+    </style>
+</head>
+<body>
+    <div class="clock-card">
+        <div class="time">
+            <span id="hours">00</span>:<span id="minutes">00</span>
+            <span class="seconds" id="seconds">00</span>
+            <span class="ampm" id="ampm">AM</span>
+        </div>
+        <div class="date" id="date">Thu, 25 Dec 2025</div>
+        <div class="tz" id="tz">Asia/Karnataka (IST)</div>
+
+        <div class="controls">
+            <button id="toggleFormat">Switch to 24h</button>
+            <button id="toggleSeconds">Hide seconds</button>
+        </div>
+    </div>
+    <script>
+  let use24h = false;
+  let showSeconds = true;
+
+  const elHours   = document.getElementById('hours');
+  const elMinutes = document.getElementById('minutes');
+  const elSeconds = document.getElementById('seconds');
+  const elAmPm    = document.getElementById('ampm');
+  const elDate    = document.getElementById('date');
+  const elTz      = document.getElementById('tz');
+  const btnFormat = document.getElementById('toggleFormat');
+  const btnSeconds= document.getElementById('toggleSeconds');
+
+  function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    if (!use24h) {
+      hours = hours % 12;
+      hours = hours === 0 ? 12 : hours;
+    }
+
+    elHours.textContent   = String(hours).padStart(2, '0');
+    elMinutes.textContent = String(minutes).padStart(2, '0');
+    elSeconds.textContent = String(seconds).padStart(2, '0');
+
+    elAmPm.textContent   = use24h ? '' : ampm;
+    elAmPm.style.display = use24h ? 'none' : 'inline-block';
+    elSeconds.style.display = showSeconds ? 'inline' : 'none';
+
+    const dateStr = now.toLocaleDateString(undefined, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    });
+    elDate.textContent = dateStr;
+
+    const tzName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    elTz.textContent = "Asia/Karnataka (IST)";
+  }
+
+  btnFormat.addEventListener('click', () => {
+    use24h = !use24h;
+    btnFormat.textContent = use24h ? 'Switch to 12h' : 'Switch to 24h';
+    updateClock();
+  });
+
+  btnSeconds.addEventListener('click', () => {
+    showSeconds = !showSeconds;
+    btnSeconds.textContent = showSeconds ? 'Hide seconds' : 'Show seconds';
+    updateClock();
+  });
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>

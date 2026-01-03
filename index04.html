@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Number</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fef6e4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game-container {
+      background-color: #ffffff;
+      border: 2px solid #ffb703;
+      border-radius: 12px;
+      width: 400px;
+      padding: 30px;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #023047;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #555555;
+    }
+
+    input[type="number"] {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ffb703;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 120px;
+      padding: 10px;
+      margin: 8px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #guessBtn {
+      background-color: #219ebc;
+      color: #ffffff;
+    }
+
+    #resetBtn {
+      background-color: #023047;
+      color: #ffffff;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Guess the Number</h1>
+    <p>I’m thinking of a number between 1 and 100</p>
+    <input type="number" id="guess" min="1" max="100" placeholder="Enter your guess">
+    <br>
+    <button id="guessBtn" onclick="play()">Guess</button>
+    <button id="resetBtn" onclick="reset()">Reset</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    let secret = Math.floor(Math.random() * 100) + 1;
+
+    function play() {
+      let g = Number(document.getElementById('guess').value);
+      let msg = "";
+      if (g === secret) {
+        msg =  "Correct! The number was " + secret;
+      } else if (g < secret) {
+        msg = "Too low! Try again.";
+      } else {
+        msg = "Too high! Try again.";
+      }
+      document.getElementById('message').textContent = msg;
+    }
+
+    function reset() {
+      secret = Math.floor(Math.random() * 100) + 1;
+      document.getElementById('message').textContent = "Game reset! Start guessing.";
+      document.getElementById('guess').value = "";
+    }
+  </script>
+</body>
+</html>
